@@ -1,0 +1,19 @@
+.realtime_wrapper {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    background-color: black;
+    color: yellow;
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    opacity: 0.85;
+    margin: 5px 5px;
+}
+
+.lorem {
+    font-size: 18px;
+}
