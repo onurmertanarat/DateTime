@@ -1,32 +1,24 @@
-function DateTime() {
-    const days = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
-    const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
-    let date = new Date();
-    let year = date.getFullYear();
-    let month = date.getMonth();
-    let day = date.getDate();
-    let hour = date.getHours();
-    hour = checkTime(hour);
-    let minute = date.getMinutes();
-    minute = checkTime(minute);
-    let second = date.getSeconds();
-    second = checkTime(second);
-    let dateString = days[date.getDay()];
-    let monthString = months[date.getMonth()];
+(function () {
+    const dateElement = document.getElementById('date');
+    const clockElement = document.getElementById('clock');
 
-    document.getElementById('date').innerHTML = `${day} ${monthString} ${year}`;
-    document.getElementById('clock').innerHTML = `${hour}:${minute}:${second}`
+    // 'tr-TR' or 'en-US' 
+    const dateFormatter = new Intl.DateTimeFormat('en-US', {
+        dateStyle: 'long'
+    });
 
-    setTimeout(() => {
-        DateTime();
-    }, 500);
-}
+    function updateClock() {
+        const now = new Date();
 
-let checkTime = (x) => {
-    if (x < 10) {
-        x = '0' + x;
+        const dateString = dateFormatter.format(now);
+
+        const timeString = now.toLocaleTimeString('tr-TR');
+
+        dateElement.textContent = dateString;
+        clockElement.textContent = timeString;
     }
-    return x;
-}
 
-DateTime();
+    setInterval(updateClock, 1000);
+
+    updateClock();
+})();
